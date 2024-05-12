@@ -42,13 +42,24 @@ const UserPage = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-   
-    setFormData({
-      ...formData,
-      [name]: value,
-      client: { connect: { clientId:"Flame123" } } // Updated to use parsedValue
-    });
+  
+    if (name === 'client') {
+      setFormData(prevState => ({
+        ...prevState,
+        client: {
+          connect: {
+            clientId: value
+          }
+        }
+      }));
+    } else {
+      setFormData(prevState => ({
+        ...prevState,
+        [name]: value
+      }));
+    }
   };
+  
   
 
 

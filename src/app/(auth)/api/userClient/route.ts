@@ -1,6 +1,5 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
-import { NextApiResponse, NextApiRequest } from 'next';
 
 export async function POST(req: Request) {
   try {
@@ -21,7 +20,7 @@ export async function POST(req: Request) {
   }
 }
 
-export async function GET(req: NextApiRequest) {
+export async function GET(req: Request) {
     try {
       const userClient = await db.userClient.findMany({
        
