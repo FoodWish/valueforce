@@ -33,3 +33,21 @@ export async function GET(req: Request) {
     }
   }
   
+  export async function DELETE(req: Request) {
+    try {
+      const body = await req.json();
+      const { id } = body;
+      const deletedClient = await db.userClient.delete({
+        where: { id: Number(id) },
+      });
+      if (deletedClient) {
+        return NextResponse.json({ message: "Client deleted successfully" }, { status: 200 });
+      } else {
+        return NextResponse.json({ message: "Client not found" }, { status: 404 });
+      }
+    } catch (err) {
+      console.log(err);
+      return NextResponse.json({ message: "Something went wrong" }, { status: 500 });
+    }
+  }
+  
