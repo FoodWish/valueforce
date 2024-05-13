@@ -46,7 +46,7 @@ const UserPage = () => {
     const fetchData = async () => {
       if (status === "authenticated") {
         try {
-          const response = await fetch("/api/userClient");
+          const response = await fetch("/api/user");
           const data = await response.json();
           setClients(data.userClient);
         } catch (error) {
